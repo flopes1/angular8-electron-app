@@ -5,12 +5,15 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build-old": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "electron": "ng build --base-href ./ && tsc --p electron && electron .",
-    "electron-prod": "ng build --prod --base-href ./ && tsc --p electron && electron ."
+    "build": "ng build --base-href ./ && tsc --p electron",
+    "build:prod": "ng build --prod --base-href ./ && tsc --p electron",
+    "electron": "npm run build && electron .",
+    "electron:prod": "npm run build:prod && electron .",
+    "electron:release": "npm run build:prod && electron-packager . app platform=win32"
   },
   "private": true,
   "dependencies": {
