@@ -11,7 +11,7 @@
     "e2e": "ng e2e",
     "build": "ng build --base-href ./ && tsc --p electron",
     "build:prod": "ng build --prod --base-href ./ && tsc --p electron",
-    "electron": "npm run build && electron .",
+    "electron": "npm run build && electron . --serve",
     "electron:prod": "npm run build:prod && electron .",
     "electron:release": "npm run build:prod && electron-packager . app platform=win32"
   },
@@ -41,6 +41,7 @@
     "codelyzer": "^5.0.0",
     "electron": "^5.0.3",
     "electron-packager": "^13.1.1",
+    "electron-reload": "^1.4.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
