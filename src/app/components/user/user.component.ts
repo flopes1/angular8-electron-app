@@ -2,6 +2,18 @@ import { Component, OnInit } from '@angular/core';
 
 const USERS = [
   { name: 'Filipe Lopes', email: 'flm@mail.com', height: '1,78' },
+  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
   { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' }
 ];
 
