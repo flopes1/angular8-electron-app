@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, ipcMain } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
@@ -40,9 +40,31 @@ function createWindow() {
     }
     window.removeMenu();
 
-    if (serve) {
-        window.webContents.openDevTools();
-    }
+    ipcMain.on('getUsers', (event, arg) => {
+        const users = [
+            { name: 'Filipe Lopes', email: 'flm@mail.com', height: '1,78' },
+            { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+            { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+            { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+            { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+            { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+            { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+            { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+            { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+            { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+            { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+            { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+            { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
+            { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' }
+        ]
+        console.log('chegou');
+        // window.webContents.send('getUsersResponse', user);
+        event.sender.send('usersResponse', users);
+    });
+
+    // if (serve) {
+    window.webContents.openDevTools();
+    // }
 }
 
 app.on('ready', createWindow);

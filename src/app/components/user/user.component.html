@@ -2,6 +2,8 @@
 
 <div class="container">
 
+  <button (click)="addUser()">Novo usuário</button>
+
   <ngx-datatable class="bootstrap" [rows]="users" [loadingIndicator]="loadingIndicator" [columns]="columns"
     [columnMode]="'force'" [headerHeight]="40" [summaryPosition]="'bottom'" [footerHeight]="40" [limit]="10"
     [rowHeight]="'auto'" [reorderable]="reorderable">
