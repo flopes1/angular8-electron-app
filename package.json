@@ -26,7 +26,6 @@
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
     "@swimlane/ngx-datatable": "^15.0.2",
-    "bootstrap": "4.1.1",
     "ngx-bootstrap": "^4.1.1",
     "ngx-electron": "^2.1.1",
     "rxjs": "~6.4.0",
