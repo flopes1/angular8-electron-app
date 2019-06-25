@@ -1,21 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-const USERS = [
-  { name: 'Filipe Lopes', email: 'flm@mail.com', height: '1,78' },
-  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
-  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
-  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
-  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
-  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
-  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
-  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
-  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
-  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
-  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
-  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
-  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' },
-  { name: 'Maria Paula', email: 'mpnfl@mail.com', height: '1,68' }
-];
+import { ElectronService } from 'ngx-electron';
+import { User } from '../../../assets/model/user';
 
 @Component({
   selector: 'app-user',
@@ -24,21 +10,52 @@ const USERS = [
 })
 export class UserComponent implements OnInit {
 
-  users: any;
+  listUserView = true;
+  currentUser: User = new User();
+  users: User[] = [];
   columns = [
     { name: 'Nome', prop: 'name' },
     { name: 'E-mail', prop: 'email' },
-    { name: 'Altura', prop: 'height' }
+    { name: 'Telefone', prop: 'phone' }
   ];
 
-  constructor() { }
+  constructor(private electronService: ElectronService) { }
 
   ngOnInit() {
-    this.users = USERS;
+    this.getUsers();
   }
 
   getUsers() {
-    return this.users;
+    this.users = [];
+
+    if (this.electronService.isElectronApp) {
+
+      this.electronService.ipcRenderer.on('usersResponse', (event, arg) => {
+        this.users = arg;
+        this.users = [...this.users];
+      });
+
+      this.electronService.ipcRenderer.send('getUsers');
+    }
+  }
+
+  addUser() {
+
+    if (this.electronService.isElectronApp) {
+
+      this.electronService.ipcRenderer.on('usersResponse', (event, arg) => {
+        this.users = arg;
+        this.users = [...this.users];
+      });
+
+      this.electronService.ipcRenderer.send('addUser', this.currentUser);
+      this.currentUser = new User();
+      this.listUserView = true;
+    }
+  }
+
+  showUserForm() {
+    this.listUserView = false;
   }
 
 }
